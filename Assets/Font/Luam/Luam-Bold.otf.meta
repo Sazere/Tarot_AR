@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 2b717e5f47c2b254ca68f1f03d87d1ad
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Luam
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 495b07c15301a5848ad125fccad5f108, type: 3}
+  - {fileID: 12800000, guid: 0759303ce9cca1d4a823d8773be9b3cb, type: 3}
+  - {fileID: 12800000, guid: 83979c80db89d404db5d6f281483a7a5, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

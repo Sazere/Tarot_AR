@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848409ee8ba454f42a5ddff137688a27, type: 3}
+  m_Name: ReferenceImageLibrary
+  m_EditorClassIdentifier: 
+  m_GuidLow: 4895348540451117918
+  m_GuidHigh: 5045874912409011087
+  m_Images:
+  - m_SerializedGuid:
+      m_GuidLow: 5259631921554509600
+      m_GuidHigh: 505871059284329620
+    m_SerializedTextureGuid:
+      m_GuidLow: 8837293702274494211
+      m_GuidHigh: 307225661237176681
+    m_Size: {x: 0.1, y: 0.17757297}
+    m_SpecifySize: 1
+    m_Name: 0-Atout
+    m_Texture: {fileID: 2800000, guid: dbde2f035fcc7aa46929ed731c7c4304, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 5052361850323445742
+      m_GuidHigh: 12996205273778160569
+    m_SerializedTextureGuid:
+      m_GuidLow: 12737395954109265424
+      m_GuidHigh: 10783462071613714424
+    m_Size: {x: 0.1, y: 0.17777778}
+    m_SpecifySize: 1
+    m_Name: 1-Atout
+    m_Texture: {fileID: 2800000, guid: 782e36105222b0c4f8ef6ef39e8da695, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 4830743507701862137
+      m_GuidHigh: 4505941931324745914
+    m_SerializedTextureGuid:
+      m_GuidLow: 2482758382954456250
+      m_GuidHigh: 5456271806979280363
+    m_Size: {x: 0.1, y: 0.17757297}
+    m_SpecifySize: 1
+    m_Name: 14-Carreau
+    m_Texture: {fileID: 2800000, guid: 571fa4ba87982274eb8dfac44c92b84b, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 5490791131837435186
+      m_GuidHigh: 1006762427309861305
+    m_SerializedTextureGuid:
+      m_GuidLow: 8850924781842186789
+      m_GuidHigh: 870073193882800248
+    m_Size: {x: 0.1, y: 0.19112782}
+    m_SpecifySize: 1
+    m_Name: 1-Coeur
+    m_Texture: {fileID: 0}
