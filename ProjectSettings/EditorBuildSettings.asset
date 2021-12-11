@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameMode.unity
     guid: 011fcc23cefdfa64ea707e82b742a050
+  - enabled: 1
+    path: Assets/Scenes/Score.unity
+    guid: 0d771911b8d425444af18541a7dd6d44
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 0a0203a379836f748a3ccdae8304445a, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 187abe5e4bfb27e48bd9c26bc854d4f3, type: 2}

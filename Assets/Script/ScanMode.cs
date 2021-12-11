@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.SceneManagement;
+using System.Threading;
 
 namespace tARot
 {
@@ -61,6 +62,7 @@ namespace tARot
         private void Dismiss() => welcomePanel.SetActive(false);
         
         private void GameMode() {
+            Thread.Sleep(2000);
             SceneManager.LoadScene("GameMode");
         }
 
@@ -70,6 +72,10 @@ namespace tARot
                 foreach (ARTrackedImage trackedImage in eventArgs.added){
                     UpdateARImageAdded(trackedImage);
                 }
+            }
+            else
+            {
+                GameMode();
             }
             foreach (ARTrackedImage trackedImage in eventArgs.updated)
             {
