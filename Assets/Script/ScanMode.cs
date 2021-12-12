@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.SceneManagement;
+using System;
 
 namespace tARot
 {
@@ -31,6 +32,7 @@ namespace tARot
 
         private Dictionary<string, GameObject> arObjects = new Dictionary<string, GameObject>();
         public HashSet<Card> cards = new HashSet<Card>();
+        public HashSet<Card> gameCards = new HashSet<Card>();
 
         public void Start()
         {
@@ -65,7 +67,7 @@ namespace tARot
         }
 
         void OnTrackedImagesChanged(ARTrackedImagesChangedEventArgs eventArgs){
-            //On vérifie qu'on a bien scanné toutes les cartes et pas une de plus.
+            //On v?rifie qu'on a bien scann? toutes les cartes et pas une de plus.
             if (GM.maxCards != cards.Count){
                 foreach (ARTrackedImage trackedImage in eventArgs.added){
                     UpdateARImageAdded(trackedImage);
@@ -91,10 +93,18 @@ namespace tARot
 
             string[] subs = trackedImage.referenceImage.name.Split('-');
 
-            Card card = new Card(subs[0], subs[1]);
+            Card card = new Card(subs[1], Convert.ToInt32(subs[0]));
 
-            cards.Add(card);
-            
+            if (cards.Count > 1)
+            {
+                gameCards.Add(card);
+            } else
+            {
+                cards.Add(card);
+
+            }
+
+
 
             GameObject goARObject = arObjects[trackedImage.referenceImage.name];
             goARObject.transform.position = trackedImage.transform.position;
@@ -111,6 +121,7 @@ namespace tARot
             Debug.Log($"trackedImage.referenceImage.name: {trackedImage.referenceImage.name}");
             imageCardsText.text = "Cards " + cards.Count + "/"+ GM.maxCards;
             GM.cards = cards;
+            GM.gameCards = gameCards;
         }
         private void UpdateARImageUpdated(ARTrackedImage trackedImage){
             // Display the name of the tracked image in the canvas
