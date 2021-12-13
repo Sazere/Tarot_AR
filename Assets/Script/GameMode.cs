@@ -16,7 +16,13 @@ namespace tARot
         private GameObject welcomePanel;
 
         [SerializeField]
+        private GameObject exitPanel;
+
+        [SerializeField]
         private Button dismissButton;
+
+        [SerializeField]
+        private Button exitButton;
 
         [SerializeField]
         private Text imageTrackedText;
@@ -34,6 +40,7 @@ namespace tARot
         public string cardsPlayed = "";
         public List<string> cardsPlayedRound = new List<string>();
         public List<string> cardsPlayedGame = new List<string>();
+        public int round = 0;
 
         public void Start(){
             GM = FindObjectOfType<GameManager>();
@@ -56,23 +63,26 @@ namespace tARot
             welcomePanel.SetActive(false);
             instructionsPanel.SetActive(true);
         }
+
+        private void Exit(){
+            SceneManager.LoadScene("Menu");
+        }
+
         void OnTrackedImagesChanged2(ARTrackedImagesChangedEventArgs eventArgs){
-                foreach (ARTrackedImage trackedImage in eventArgs.added)
-                {
+
+            //Tant que tous les rounds ne sont pas joués, on va chercher à scanner des cartes
+            if (round != GM.nbRounds){
+                foreach (ARTrackedImage trackedImage in eventArgs.added){
                     UpdateARImageAdded2(trackedImage);
                 }
 
-                foreach (ARTrackedImage trackedImage in eventArgs.updated)
-                {
-                    if (trackedImage.trackingState == UnityEngine.XR.ARSubsystems.TrackingState.Tracking)
-                    {
+                foreach (ARTrackedImage trackedImage in eventArgs.updated){
+                    if (trackedImage.trackingState == UnityEngine.XR.ARSubsystems.TrackingState.Tracking){
                         UpdateARImageUpdated2(trackedImage);
                     }
                 }
-                foreach (ARTrackedImage trackedImage in eventArgs.removed)
-                {
+                foreach (ARTrackedImage trackedImage in eventArgs.removed){
                     Debug.Log($"test");
-
                 }
                 var output = "";
                 foreach (Card i in GM.cards)
@@ -80,7 +90,17 @@ namespace tARot
                     output += i.ToString() + " | ";
                 }
                 imageTrackedText.text = output;
-           
+            }
+            else{
+                //On actualise une dernière fois l'affichage
+                imageTrackedText.text = "";
+                //et on clear toutes les variables
+                cardsPlayedGame.Clear();
+
+                exitPanel.SetActive(true);
+                exitButton.onClick.AddListener(Exit);
+
+            }
         }
 
         private void UpdateARImageAdded2(ARTrackedImage trackedImage){
@@ -134,6 +154,7 @@ namespace tARot
             if (cardsPlayedRound.Count == (GM.nbPlayers - 1)){                
                 //On vérifie que c'est une carte du joueur
                 if (cardPlayer == true && alreadyDisplayed == false){
+                    round++;
                     //On efface tout
                     cardsPlayedRound.Clear();
                     cardsPlayedGame.Add(trackedImage.referenceImage.name);

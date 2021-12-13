@@ -36,6 +36,8 @@ namespace tARot
         public void Start()
         {
             GM = FindObjectOfType<GameManager>();
+            imageCardsText.text = "Cards 0/" + GM.maxCards;
+            cards.Clear();
         }
 
         void Awake(){
@@ -100,7 +102,10 @@ namespace tARot
             Card card = new Card(subs[0], subs[1]);
 
             cards.Add(card);
-            
+
+            imageCardsText.text = "Cards " + cards.Count + "/" + GM.maxCards;
+            GM.cards = cards;
+
 
             GameObject goARObject = arObjects[trackedImage.referenceImage.name];
             goARObject.transform.position = trackedImage.transform.position;
@@ -115,8 +120,6 @@ namespace tARot
             }
 
             Debug.Log($"trackedImage.referenceImage.name: {trackedImage.referenceImage.name}");
-            imageCardsText.text = "Cards " + cards.Count + "/"+ GM.maxCards;
-            GM.cards = cards;
         }
         private void UpdateARImageUpdated(ARTrackedImage trackedImage){
             // Display the name of the tracked image in the canvas
