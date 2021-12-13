@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.SceneManagement;
 using System.Threading;
+using System;
 
 namespace tARot
 {
@@ -42,6 +43,8 @@ namespace tARot
         public List<string> cardsPlayedGame = new List<string>();
         public int round = 0;
 
+        public List<Card> playableCards = new List<Card>();
+
         public void Start(){
             GM = FindObjectOfType<GameManager>();
         }
@@ -70,7 +73,7 @@ namespace tARot
 
         void OnTrackedImagesChanged2(ARTrackedImagesChangedEventArgs eventArgs){
 
-            //Tant que tous les rounds ne sont pas joués, on va chercher à scanner des cartes
+            //Tant que tous les rounds ne sont pas jou?s, on va chercher ? scanner des cartes
             if (round != GM.nbRounds){
                 foreach (ARTrackedImage trackedImage in eventArgs.added){
                     UpdateARImageAdded2(trackedImage);
@@ -84,6 +87,7 @@ namespace tARot
                 foreach (ARTrackedImage trackedImage in eventArgs.removed){
                     Debug.Log($"test");
                 }
+
                 var output = "";
                 foreach (Card i in GM.cards)
                 {
@@ -92,7 +96,7 @@ namespace tARot
                 imageTrackedText.text = output;
             }
             else{
-                //On actualise une dernière fois l'affichage
+                //On actualise une derni?re fois l'affichage
                 imageTrackedText.text = "";
                 //et on clear toutes les variables
                 cardsPlayedGame.Clear();
@@ -107,24 +111,24 @@ namespace tARot
             //Scan des cartes sur le plateau
             if (cardsPlayedRound.Count != (GM.nbPlayers - 1)){
                 string[] subs = trackedImage.referenceImage.name.Split('-');
-                Card card = new Card(subs[0], subs[1]);
+                Card card = new Card(subs[1], Convert.ToInt32(subs[0]));
                 bool cardPlayer = GM.cards.Contains(card);
                 ListCardPlayedBoard.text = "Add" + cardPlayer.ToString() + trackedImage.referenceImage.name;
             }
         }
         private void UpdateARImageUpdated2(ARTrackedImage trackedImage){
             var output = "";
-            //Est-ce que la carte a déjà été scanné ?
+            //Est-ce que la carte a d?j? ?t? scann? ?
             bool alreadyDisplayed = cardsPlayedGame.Contains(trackedImage.referenceImage.name);
             string[] subs = trackedImage.referenceImage.name.Split('-');
-            Card card = new Card(subs[0], subs[1]);
+            Card card = new Card(subs[1], Convert.ToInt32(subs[0]));
 
             bool cardPlayer = false;
             foreach (Card i in GM.cards)
             {
                 if (i.getSuit().Equals(card.getSuit()))
                 {
-                    if (i.getCardvalue().Equals(card.getCardvalue()))
+                    if (i.getValue().Equals(card.getValue()))
                     {
                         cardPlayer = true;
                         break;
@@ -134,11 +138,11 @@ namespace tARot
             Debug.Log($"test{cardsPlayedRound.Count}+GM.nbPlayers - 1 :{GM.nbPlayers - 1}+ cardPlayer{cardPlayer}");
             //On va scanner les cartes des autres joueurs
             if (cardsPlayedRound.Count != (GM.nbPlayers - 1)){
-                //On vérifie que ce n'est pas une carte du joueur
+                //On v?rifie que ce n'est pas une carte du joueur
                 if (cardPlayer == false){
-                    //Et qu'elle n'a pas déjà été scanné
+                    //Et qu'elle n'a pas d?j? ?t? scann?
                     if (alreadyDisplayed == false){
-                        //On l'ajoute à la liste des cartes du round
+                        //On l'ajoute ? la liste des cartes du round
                         cardsPlayedRound.Add(trackedImage.referenceImage.name);
                         cardsPlayedGame.Add(trackedImage.referenceImage.name);
                         foreach (string i in cardsPlayedRound)
@@ -147,12 +151,24 @@ namespace tARot
                         }
                         // Display the name of the tracked image in the canvas
                          ListCardPlayedBoard.text = output;
+
+                        // Check what card we can play
+                        checkCardsToPlay(card);
+
+                        // Display playing recomendation
+                        var recommendation = "";
+                        foreach (Card i in playableCards)
+                        {
+                            recommendation += i.ToString() + " | ";
+                        }
+                        CardPlayer.text = recommendation;
+
                     }
                 }
             }
-            //Quand toutes les cartes du plateau ont été scanné, on va scanner la carte du user.
+            //Quand toutes les cartes du plateau ont ?t? scann?, on va scanner la carte du user.
             if (cardsPlayedRound.Count == (GM.nbPlayers - 1)){                
-                //On vérifie que c'est une carte du joueur
+                //On v?rifie que c'est une carte du joueur
                 if (cardPlayer == true && alreadyDisplayed == false){
                     round++;
                     //On efface tout
@@ -164,7 +180,7 @@ namespace tARot
                     {
                         if (i.getSuit().Equals(card.getSuit()))
                         {
-                            if (i.getCardvalue().Equals(card.getCardvalue()))
+                            if (i.getValue().Equals(card.getValue()))
                             {
                                 GM.cards.Remove(i);
                             }
@@ -176,6 +192,49 @@ namespace tARot
             }
 
         }
+
+        // check if we have at least one card of the suit asked
+        private bool checkSuit(Card gameCard)
+        {
+            foreach (Card handCard in GM.cards)
+            {
+                Debug.Log($"-------ISAAAAATTTTTOOOOUUUUTTTT------- {handCard.getSuit()}   {gameCard.getSuit()} == {handCard.getSuit() == handCard.getSuit()}");
+                if (handCard.getSuit() == gameCard.getSuit())
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // function to trigger after scaning gameCard, it will set the HashSet of cards that we can play
+        public void checkCardsToPlay(Card gameCard)
+        {
+            playableCards.Clear();
+            bool haveSuit = checkSuit(gameCard);
+
+            foreach (Card handCard in GM.cards)
+            {
+                if (haveSuit && (handCard.getSuit() == gameCard.getSuit()))
+                {
+                    Debug.Log($"-------JJJJJJAAAAAIIIIII------- {handCard}");
+                    playableCards.Add(handCard);
+                    //if (handCard.getValue() > gameCard.getValue()) handCard.setHighlight(true);
+                }
+                else if (!haveSuit && handCard.isAtout())
+                {
+                    Debug.Log($"-------CCCOOOOUUUUUPPPPPPEEE------- {handCard}");
+                    playableCards.Add(handCard);
+                    //handCard.setHighlight(true);
+                }
+                else if (!haveSuit && !handCard.isAtout())
+                {
+                    Debug.Log($"-------PPPPIIIIISSSSSSEEEEE------- {handCard}");
+                    playableCards.Add(handCard);
+                }
+            }
+        }
+
     }
 
 }

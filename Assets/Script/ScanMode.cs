@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.SceneManagement;
 using System.Threading;
+using System;
 
 namespace tARot
 {
@@ -69,7 +70,7 @@ namespace tARot
         }
 
         void OnTrackedImagesChanged(ARTrackedImagesChangedEventArgs eventArgs){
-            //On vérifie qu'on a bien scanné toutes les cartes et pas une de plus.
+            //On v?rifie qu'on a bien scann? toutes les cartes et pas une de plus.
             if (GM.maxCards != cards.Count){
                 foreach (ARTrackedImage trackedImage in eventArgs.added){
                     UpdateARImageAdded(trackedImage);
@@ -99,7 +100,7 @@ namespace tARot
 
             string[] subs = trackedImage.referenceImage.name.Split('-');
 
-            Card card = new Card(subs[0], subs[1]);
+            Card card = new Card(subs[1], Convert.ToInt32(subs[0]));
 
             cards.Add(card);
 
