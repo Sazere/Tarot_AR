@@ -4,6 +4,8 @@ using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.SceneManagement;
 using System.Linq;
+using System.Threading;
+using System;
 
 namespace tARot
 {
@@ -39,6 +41,8 @@ namespace tARot
         public void Start()
         {
             GM = FindObjectOfType<GameManager>();
+            imageCardsText.text = "Cards 0/" + GM.maxCards;
+            cards.Clear();
         }
 
         void Awake(){
@@ -73,6 +77,7 @@ namespace tARot
         private void Dismiss() => welcomePanel.SetActive(false);
 
         private void GameMode() {
+            Thread.Sleep(2000);
             SceneManager.LoadScene("GameMode");
         }
 
@@ -82,6 +87,10 @@ namespace tARot
                 foreach (ARTrackedImage trackedImage in eventArgs.added){
                     UpdateARImageAdded(trackedImage);
                 }
+            }
+            else
+            {
+                GameMode();
             }
             foreach (ARTrackedImage trackedImage in eventArgs.updated)
             {
@@ -105,9 +114,13 @@ namespace tARot
 
             string[] subs = trackedImage.referenceImage.name.Split('-');
 
-            Card card = new Card(subs[0], subs[1]);
+            Card card = new Card(subs[1], Convert.ToInt32(subs[0]));
 
             cards.Add(card);
+
+            imageCardsText.text = "Cards " + cards.Count + "/" + GM.maxCards;
+            GM.cards = cards;
+
 
             Vector3 offset = new Vector3((float)0.03, 0, 0);
             arObjects2[trackedImage.referenceImage.name].ElementAt(0).transform.position = trackedImage.transform.position;
@@ -127,8 +140,6 @@ namespace tARot
               }
 
             Debug.Log($"trackedImage.referenceImage.name: {trackedImage.referenceImage.name}");
-            imageCardsText.text = "Cards " + cards.Count + "/"+ GM.maxCards;
-            GM.cards = cards;
         }
         private void UpdateARImageUpdated(ARTrackedImage trackedImage){
             // Display the name of the tracked image in the canvas
