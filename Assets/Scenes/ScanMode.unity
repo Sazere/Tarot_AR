@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -797,7 +797,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 827212984}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d09a6f57d0a338d45853699eda9a50ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 543b3fb39e5165e4394893334e2c66ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   welcomePanel: {fileID: 1171805823}
@@ -808,9 +808,12 @@ MonoBehaviour:
   arObjectsToPlace:
   - {fileID: 9064336832436524444, guid: 632c90958fcf7b34c8ad9fc9bfba8a25, type: 3}
   - {fileID: 1993270207401054740, guid: 5db90fb7cb5b67341a674f4da4adbca3, type: 3}
-  - {fileID: 8715258861373365816, guid: 865e4e655c50ad54fb918783ff8c9006, type: 3}
   - {fileID: 7229500005636540958, guid: 51982d32162822a4ea6ed2bf71ae58c1, type: 3}
-  scaleFactor: {x: 0.1, y: 0.1, z: 0.1}
+  - {fileID: 8715258861373365816, guid: 865e4e655c50ad54fb918783ff8c9006, type: 3}
+  arObjectsNumbersLettersToPlace:
+  - {fileID: 5782064710398478732, guid: 3190c649c690a8941a06523a202fce82, type: 3}
+  arObjectsSymbolsToPlace:
+  - {fileID: 185396333746983673, guid: 83884afc594ea764a8198f3a8cfc41f6, type: 3}
 --- !u!114 &827212988
 MonoBehaviour:
   m_ObjectHideFlags: 0
