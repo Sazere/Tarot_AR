@@ -36,16 +36,6 @@ MonoBehaviour:
     m_Name: 1-Atout
     m_Texture: {fileID: 2800000, guid: 782e36105222b0c4f8ef6ef39e8da695, type: 3}
   - m_SerializedGuid:
-      m_GuidLow: 4830743507701862137
-      m_GuidHigh: 4505941931324745914
-    m_SerializedTextureGuid:
-      m_GuidLow: 2482758382954456250
-      m_GuidHigh: 5456271806979280363
-    m_Size: {x: 0.1, y: 0.17757297}
-    m_SpecifySize: 1
-    m_Name: 14-Carreau
-    m_Texture: {fileID: 2800000, guid: 571fa4ba87982274eb8dfac44c92b84b, type: 3}
-  - m_SerializedGuid:
       m_GuidLow: 5490791131837435186
       m_GuidHigh: 1006762427309861305
     m_SerializedTextureGuid:
@@ -134,4 +124,274 @@ MonoBehaviour:
     m_Size: {x: 0.1, y: 0.18842316}
     m_SpecifySize: 1
     m_Name: 10-Atout
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5744978842691297414
+      m_GuidHigh: 17393647203041791376
+    m_SerializedTextureGuid:
+      m_GuidLow: 8738140435063125656
+      m_GuidHigh: 4061863300019980024
+    m_Size: {x: 0.1, y: 0.18633334}
+    m_SpecifySize: 1
+    m_Name: 11-Atout
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4615532949045468551
+      m_GuidHigh: 17338824278028531334
+    m_SerializedTextureGuid:
+      m_GuidLow: 16601565526445780937
+      m_GuidHigh: 5576156876541175976
+    m_Size: {x: 0.1, y: 0.18783334}
+    m_SpecifySize: 1
+    m_Name: 12-Atout
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4763945789741955890
+      m_GuidHigh: 8443550217424290975
+    m_SerializedTextureGuid:
+      m_GuidLow: 13331905107418466148
+      m_GuidHigh: 1710591359916999243
+    m_Size: {x: 0.1, y: 0.18133333}
+    m_SpecifySize: 1
+    m_Name: 13-Atout
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5434964861676036011
+      m_GuidHigh: 13833237568679286941
+    m_SerializedTextureGuid:
+      m_GuidLow: 9337123375566052511
+      m_GuidHigh: 12122356461021694408
+    m_Size: {x: 0.1, y: 0.18450001}
+    m_SpecifySize: 1
+    m_Name: 14-Atout
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5454599243314911783
+      m_GuidHigh: 12628875841178431149
+    m_SerializedTextureGuid:
+      m_GuidLow: 8585031201315278742
+      m_GuidHigh: 3668916977273141515
+    m_Size: {x: 0.1, y: 0.18416667}
+    m_SpecifySize: 1
+    m_Name: 15-Atout
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4997387149357200411
+      m_GuidHigh: 12993237763294193558
+    m_SerializedTextureGuid:
+      m_GuidLow: 5806366670950204893
+      m_GuidHigh: 5737860015964216458
+    m_Size: {x: 0.1, y: 0.186}
+    m_SpecifySize: 1
+    m_Name: 16-Atout
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5045400261027721554
+      m_GuidHigh: 5380382181381383860
+    m_SerializedTextureGuid:
+      m_GuidLow: 12971747912677246510
+      m_GuidHigh: 5285549266474039147
+    m_Size: {x: 0.1, y: 0.1825}
+    m_SpecifySize: 1
+    m_Name: 17-Atout
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5426677071267498364
+      m_GuidHigh: 8403687338252950922
+    m_SerializedTextureGuid:
+      m_GuidLow: 15988906629384795536
+      m_GuidHigh: 10121088850405839530
+    m_Size: {x: 0.1, y: 0.186}
+    m_SpecifySize: 1
+    m_Name: 18-Atout
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5222722413055189573
+      m_GuidHigh: 750861050929796777
+    m_SerializedTextureGuid:
+      m_GuidLow: 17520387102605031815
+      m_GuidHigh: 15034761576767420683
+    m_Size: {x: 0.1, y: 0.18566667}
+    m_SpecifySize: 1
+    m_Name: 19-Atout
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4863295599430031559
+      m_GuidHigh: 12786217625394873475
+    m_SerializedTextureGuid:
+      m_GuidLow: 16750064718573104679
+      m_GuidHigh: 8987230757454843145
+    m_Size: {x: 0.1, y: 0.185}
+    m_SpecifySize: 1
+    m_Name: 20-Atout
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5488900352645330294
+      m_GuidHigh: 5584777061389152446
+    m_SerializedTextureGuid:
+      m_GuidLow: 9413895431117991554
+      m_GuidHigh: 2951160642440005786
+    m_Size: {x: 0.1, y: 0.18533334}
+    m_SpecifySize: 1
+    m_Name: 21-Atout
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5608628237126306071
+      m_GuidHigh: 7966688392561819028
+    m_SerializedTextureGuid:
+      m_GuidLow: 2482758382954456250
+      m_GuidHigh: 5456271806979280363
+    m_Size: {x: 0.1, y: 0.17757297}
+    m_SpecifySize: 1
+    m_Name: 14-Carreau
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5161903668536263236
+      m_GuidHigh: 8599599451612536251
+    m_SerializedTextureGuid:
+      m_GuidLow: 12273633768796650384
+      m_GuidHigh: 16986092405476082394
+    m_Size: {x: 0.1, y: 0.1865}
+    m_SpecifySize: 1
+    m_Name: 13-Carreau
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5539192106846820373
+      m_GuidHigh: 12895297135661354884
+    m_SerializedTextureGuid:
+      m_GuidLow: 1437793998891913178
+      m_GuidHigh: 6795902724701879880
+    m_Size: {x: 0.1, y: 0.18450001}
+    m_SpecifySize: 1
+    m_Name: 12-Carreau
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4957604669883301428
+      m_GuidHigh: 3235357145417893310
+    m_SerializedTextureGuid:
+      m_GuidLow: 3437578575297604935
+      m_GuidHigh: 14895488616911284937
+    m_Size: {x: 0.1, y: 0.1855}
+    m_SpecifySize: 1
+    m_Name: 11-Carreau
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5127174513071642540
+      m_GuidHigh: 1547635482581507731
+    m_SerializedTextureGuid:
+      m_GuidLow: 9386873463325627018
+      m_GuidHigh: 12219491434724536154
+    m_Size: {x: 0.1, y: 0.18333334}
+    m_SpecifySize: 1
+    m_Name: 14-Coeur
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5218014391659522213
+      m_GuidHigh: 5189253777573898403
+    m_SerializedTextureGuid:
+      m_GuidLow: 4392208210373267922
+      m_GuidHigh: 1331364265800074938
+    m_Size: {x: 0.1, y: 0.18450001}
+    m_SpecifySize: 1
+    m_Name: 13-Coeur
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5292393961760503585
+      m_GuidHigh: 8960266256920604077
+    m_SerializedTextureGuid:
+      m_GuidLow: 11395442099361304198
+      m_GuidHigh: 243710867818091867
+    m_Size: {x: 0.1, y: 0.18616667}
+    m_SpecifySize: 1
+    m_Name: 12-Coeur
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5719285860966937399
+      m_GuidHigh: 16408771289978958263
+    m_SerializedTextureGuid:
+      m_GuidLow: 8247246830431528952
+      m_GuidHigh: 6257328809692631161
+    m_Size: {x: 0.1, y: 0.18800001}
+    m_SpecifySize: 1
+    m_Name: 11-Coeur
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5253841692245241385
+      m_GuidHigh: 15169882739667981719
+    m_SerializedTextureGuid:
+      m_GuidLow: 1487402859672369402
+      m_GuidHigh: 2741103923805719626
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: 14-Pique
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5520775284862824072
+      m_GuidHigh: 3221727327086123700
+    m_SerializedTextureGuid:
+      m_GuidLow: 6918703821442511199
+      m_GuidHigh: 6533439005695715066
+    m_Size: {x: 0.1, y: 0.1865}
+    m_SpecifySize: 1
+    m_Name: 13-Pique
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5579265511455503509
+      m_GuidHigh: 1310210604631781764
+    m_SerializedTextureGuid:
+      m_GuidLow: 15975636519116671964
+      m_GuidHigh: 7828554829101159898
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: 12-Pique
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5536382195371646373
+      m_GuidHigh: 8050760507500573077
+    m_SerializedTextureGuid:
+      m_GuidLow: 7504382822691881785
+      m_GuidHigh: 16628424910562801465
+    m_Size: {x: 0.1, y: 0.18516667}
+    m_SpecifySize: 1
+    m_Name: 11-Pique
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5512701265223778882
+      m_GuidHigh: 2565002202101829276
+    m_SerializedTextureGuid:
+      m_GuidLow: 8040296752650762795
+      m_GuidHigh: 9750664295501011450
+    m_Size: {x: 0.1, y: 0.18283333}
+    m_SpecifySize: 1
+    m_Name: 14-Trefle
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5515383088897407484
+      m_GuidHigh: 13176195795639461285
+    m_SerializedTextureGuid:
+      m_GuidLow: 16205089978583684295
+      m_GuidHigh: 14730012336249161640
+    m_Size: {x: 0.1, y: 0.13333334}
+    m_SpecifySize: 1
+    m_Name: 13-Trefle
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5582892833147114180
+      m_GuidHigh: 4961677458852055994
+    m_SerializedTextureGuid:
+      m_GuidLow: 11449446578206130345
+      m_GuidHigh: 4384908157378150394
+    m_Size: {x: 0.1, y: 0.185}
+    m_SpecifySize: 1
+    m_Name: 12-Trefle
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4951231043575284435
+      m_GuidHigh: 6554309152359163811
+    m_SerializedTextureGuid:
+      m_GuidLow: 14205524692410622778
+      m_GuidHigh: 10821191548969684857
+    m_Size: {x: 0.1, y: 0.185}
+    m_SpecifySize: 1
+    m_Name: 11-Trefle
     m_Texture: {fileID: 0}

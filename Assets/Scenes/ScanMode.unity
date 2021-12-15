@@ -805,15 +805,12 @@ MonoBehaviour:
   gameMode: {fileID: 669905228}
   imageTrackedText: {fileID: 1513648325}
   imageCardsText: {fileID: 618724733}
-  arObjectsToPlace:
-  - {fileID: 9064336832436524444, guid: 632c90958fcf7b34c8ad9fc9bfba8a25, type: 3}
-  - {fileID: 1993270207401054740, guid: 5db90fb7cb5b67341a674f4da4adbca3, type: 3}
-  - {fileID: 7229500005636540958, guid: 51982d32162822a4ea6ed2bf71ae58c1, type: 3}
-  - {fileID: 8715258861373365816, guid: 865e4e655c50ad54fb918783ff8c9006, type: 3}
   arObjectsNumbersLettersToPlace:
   - {fileID: 5782064710398478732, guid: 3190c649c690a8941a06523a202fce82, type: 3}
+  - {fileID: 3245096286935666333, guid: 6614c1b91b584164bba1da3c381d9195, type: 3}
   arObjectsSymbolsToPlace:
   - {fileID: 185396333746983673, guid: 83884afc594ea764a8198f3a8cfc41f6, type: 3}
+  - {fileID: 8519089058057710738, guid: c0ce2b9e245b0b148bac357857df4073, type: 3}
 --- !u!114 &827212988
 MonoBehaviour:
   m_ObjectHideFlags: 0
