@@ -68,6 +68,7 @@ namespace tARot
         }
 
         private void Exit(){
+            GM.firstGame = false;
             SceneManager.LoadScene("Menu");
         }
 

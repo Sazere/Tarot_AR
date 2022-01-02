@@ -31,5 +31,6 @@ namespace tARot{
         public int maxCards = 0;
         public int nbRounds = 0;
         public HashSet<Card> cards = new HashSet<Card>();
+        public bool firstGame = true;
     }
 }

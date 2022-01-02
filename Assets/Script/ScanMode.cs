@@ -96,7 +96,41 @@ namespace tARot
             {
                 if (trackedImage.trackingState == UnityEngine.XR.ARSubsystems.TrackingState.Tracking)
                 {
-                    UpdateARImageUpdated(trackedImage);
+
+                    if (GM.firstGame == true){
+                        UpdateARImageUpdated(trackedImage);
+
+                    }
+                    else{
+
+                        //On va vérifier si on a déjà scanné la carte dans notre jeu ou non
+                        string[] subs = trackedImage.referenceImage.name.Split('-');
+
+                        Card card = new Card(subs[1], Convert.ToInt32(subs[0]));
+                        bool cardPlayer = false;
+                        foreach (Card i in GM.cards)
+                        {
+                            if (i.getSuit().Equals(card.getSuit()))
+                            {
+                                if (i.getValue().Equals(card.getValue()))
+                                {
+                                    cardPlayer = true;
+                                    break;
+                                }
+                            }
+                        }
+
+                        //On a déjà scanné la carte dans notre jeu donc on affiche que son animation
+                        if (cardPlayer == true)
+                        {
+                            UpdateARImageUpdated(trackedImage);
+
+                        }
+                        else
+                        {
+                            UpdateARImageAdded(trackedImage);
+                        }
+                    }
                 }
             }
 
