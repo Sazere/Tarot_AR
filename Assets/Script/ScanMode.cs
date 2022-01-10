@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.SceneManagement;
-using System.Linq;
 using System.Threading;
 using System;
 
@@ -28,14 +27,11 @@ namespace tARot
         private Text imageCardsText;
 
         [SerializeField]
-        private GameObject[] arObjectsNumbersLettersToPlace;
-
-        [SerializeField]
-        private GameObject[] arObjectsSymbolsToPlace;
+        private GameObject[] arObjectsToPlace;
 
         private ARTrackedImageManager m_TrackedImageManager;
-        
-        private Dictionary<string, List<GameObject>> arObjects2 = new Dictionary<string, List<GameObject>>();
+
+        private Dictionary<string, GameObject> arObjects = new Dictionary<string, GameObject>();
         public HashSet<Card> cards = new HashSet<Card>();
 
         public void Start()
@@ -50,19 +46,11 @@ namespace tARot
             gameMode.onClick.AddListener(GameMode);
             m_TrackedImageManager = GetComponent<ARTrackedImageManager>();
 
-            // setup all game objects in dictionary
-            foreach (GameObject arObject in arObjectsSymbolsToPlace){
+            //Simpler version
+            foreach (GameObject arObject in arObjectsToPlace){
                 GameObject newARObject = Instantiate(arObject, Vector3.zero, Quaternion.identity);
-                var numberAndSymbol = new List<GameObject>();              
-                foreach(GameObject arObjectNumber in arObjectsNumbersLettersToPlace){
-                    GameObject newARNumberObject = Instantiate(arObjectNumber, Vector3.zero, Quaternion.identity);             
-                    var numberSymbolString = arObjectNumber.name + "-" + arObject.name;
-                    newARObject.name = numberSymbolString;
-                    newARNumberObject.name = numberSymbolString;
-                    numberAndSymbol.Add(newARObject);
-                    numberAndSymbol.Add(newARNumberObject);
-                    arObjects2.Add(numberSymbolString, numberAndSymbol);
-                }        
+                newARObject.name = arObject.name;   
+                arObjects.Add(newARObject.name, newARObject);                
             }
         }
 
@@ -136,9 +124,7 @@ namespace tARot
 
             foreach (ARTrackedImage trackedImage in eventArgs.removed)
             {
-                foreach(GameObject go in arObjects2[trackedImage.referenceImage.name]){
-                    go.SetActive(false);
-                }
+                arObjects[trackedImage.referenceImage.name].SetActive(false);
             }
         }
 
@@ -156,45 +142,34 @@ namespace tARot
             GM.cards = cards;
 
 
-            Vector3 offset = new Vector3((float)0.03, 0, 0);
-            arObjects2[trackedImage.referenceImage.name].ElementAt(0).transform.position = trackedImage.transform.position;
-            arObjects2[trackedImage.referenceImage.name].ElementAt(0).SetActive(true);     
-            offset.x = (float)-0.03;
-            arObjects2[trackedImage.referenceImage.name].ElementAt(1).transform.position = trackedImage.transform.position + offset;
-            arObjects2[trackedImage.referenceImage.name].ElementAt(1).SetActive(true);
-            
-              foreach (List<GameObject> listGo in arObjects2.Values){
-                  foreach(GameObject go in listGo){
-                      Debug.Log($"Go in arObjects.Values: {go.name}");
-                      if (go.name != trackedImage.referenceImage.name){
-                          Debug.Log($"Go in arObjects.Values DESACTIVATED: {go.name}");
-                          go.SetActive(false);
-                      }
-                  }     
-              }
+            arObjects[trackedImage.referenceImage.name].transform.position = trackedImage.transform.position;
+            arObjects[trackedImage.referenceImage.name].transform.rotation = Quaternion.Euler(0, -90, 0);
+            arObjects[trackedImage.referenceImage.name].SetActive(true);
 
+            foreach (GameObject go in arObjects.Values){           
+                    Debug.Log($"Go in arObjects.Values: {go.name}");
+                    if (go.name != trackedImage.referenceImage.name){
+                        Debug.Log($"Go in arObjects.Values DESACTIVATED: {go.name}");
+                        go.SetActive(false);
+                    }                    
+            }
             Debug.Log($"trackedImage.referenceImage.name: {trackedImage.referenceImage.name}");
         }
         private void UpdateARImageUpdated(ARTrackedImage trackedImage){
             // Display the name of the tracked image in the canvas
             imageTrackedText.text = trackedImage.referenceImage.name;
 
-            Vector3 offset = new Vector3((float)0.03, 0, 0);
-            arObjects2[trackedImage.referenceImage.name].ElementAt(0).transform.position = trackedImage.transform.position;
-            arObjects2[trackedImage.referenceImage.name].ElementAt(0).SetActive(true);
-            offset.x = (float)-0.03;
-            arObjects2[trackedImage.referenceImage.name].ElementAt(1).transform.position = trackedImage.transform.position + offset;
-            arObjects2[trackedImage.referenceImage.name].ElementAt(1).SetActive(true);        
+            arObjects[trackedImage.referenceImage.name].transform.position = trackedImage.transform.position;
+            arObjects[trackedImage.referenceImage.name].transform.rotation = Quaternion.Euler(0, -90, 0);
+            arObjects[trackedImage.referenceImage.name].SetActive(true);
 
-            foreach (List<GameObject> listGo in arObjects2.Values){
-                  foreach(GameObject go in listGo){
-                      Debug.Log($"Go in arObjects.Values: {go.name}");
-                      if (go.name != trackedImage.referenceImage.name){
-                          Debug.Log($"Go in arObjects.Values DESACTIVATED: {go.name}");
-                          go.SetActive(false);
-                      }
-                  }     
-              }
+            foreach (GameObject go in arObjects.Values){           
+                    Debug.Log($"Go in arObjects.Values: {go.name}");
+                    if (go.name != trackedImage.referenceImage.name){
+                        Debug.Log($"Go in arObjects.Values DESACTIVATED: {go.name}");
+                        go.SetActive(false);
+                    }                    
+            }
             Debug.Log($"trackedImage.referenceImage.name: {trackedImage.referenceImage.name}");
         }
     }
