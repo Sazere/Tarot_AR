@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -767,6 +767,23 @@ MonoBehaviour:
   ListCardPlayedBoard: {fileID: 1738892241}
   CardPlayer: {fileID: 1606994848}
   instructionsPanel: {fileID: 201792333}
+  arObjectsToPlace:
+  - {fileID: 3821714799181063030, guid: 3c8f61f33645596489ce88cbfecd3560, type: 3}
+  - {fileID: 5858866580274172349, guid: cc3dc74bd74cb3b4085714bea4b5cff8, type: 3}
+  - {fileID: 8195868376948969496, guid: 213581a033001f74d88682ed1ba9a684, type: 3}
+  - {fileID: 3682470139727376648, guid: d618e86c75435044aa9e9cbc1ca79d5d, type: 3}
+  - {fileID: 6574996134030516958, guid: 074607aa462a85245ab544f1b6103800, type: 3}
+  - {fileID: 3638906000141671405, guid: 061e34ec31ec67747a3e77d39b7cd02d, type: 3}
+  - {fileID: 4828758842345307743, guid: a4a1538e44b55694e940832f4e3aac6e, type: 3}
+  - {fileID: 6545320866655628007, guid: 1dfd84809bdf2dd4095d99168d108116, type: 3}
+  - {fileID: 1011870597765207660, guid: 106512ef36edc9b4580376f31ad053c8, type: 3}
+  - {fileID: 6659829744963576645, guid: c23f86efff348d4408c0092e6ea5d5d2, type: 3}
+  - {fileID: 4116377813535502966, guid: 7529771a5eec6a1489dac01ea2b863c7, type: 3}
+  - {fileID: 2301227866157736411, guid: d338e0b2dd2e4a549a07755d792ff11a, type: 3}
+  - {fileID: 1079498300862026224, guid: d5524c5d264d56445be243d75777510b, type: 3}
+  - {fileID: 8215287456463392313, guid: bd26fbdf85b8b8e4d8c774863f4520ad, type: 3}
+  - {fileID: 831202425090904568, guid: f8da9cda5d7c68e438c512ca8b5e9bc9, type: 3}
+  - {fileID: 933891995556280938, guid: 74d9a25795bda5749872a3fec193ee90, type: 3}
   cardsPlayed: 
   cardsPlayedRound: []
   cardsPlayedGame: []
