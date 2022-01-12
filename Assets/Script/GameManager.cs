@@ -2,7 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace tARot{ 
+namespace tARot{
+    /// <summary>
+    /// The GameManager class is a class that keeps track of the state the game is in. 
+    /// It keeps track of the number of players, turns, maximum cards of the player, his cards as well as whether the game has already been finished once or not.
+    /// </summary>
     public class GameManager : MonoBehaviour{
         protected GameManager() { }
         public static GameManager instance = null;

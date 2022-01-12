@@ -6,8 +6,13 @@ using UnityEngine.SceneManagement;
 using System.Threading;
 using System;
 
-namespace tARot
-{
+namespace tARot{
+    /// <summary>
+    /// The GameMode class is a class that handles all events (add,refresh and delete) during a game round.
+    /// The first cards scanned correspond to the opponents' cards, depending on the number of players previously decided. The last card scanned is necessarily a player's card.
+    /// We will therefore always go to the update event.
+    /// When all the player's cards have been scanned, a popup appears to signify the end of the game. This refers to the MainMenu scene.
+    /// </summary>
     [RequireComponent(typeof(ARTrackedImageManager))]
     public class GameMode : MonoBehaviour
     {
@@ -55,11 +60,11 @@ namespace tARot
         }
 
         void OnEnable(){
-            m_TrackedImageManager.trackedImagesChanged += OnTrackedImagesChanged2;
+            m_TrackedImageManager.trackedImagesChanged += OnTrackedImagesChangedGameMode;
         }
 
         void OnDisable(){
-            m_TrackedImageManager.trackedImagesChanged -= OnTrackedImagesChanged2;
+            m_TrackedImageManager.trackedImagesChanged -= OnTrackedImagesChangedGameMode;
         }
 
         private void Dismiss(){
@@ -72,34 +77,30 @@ namespace tARot
             SceneManager.LoadScene("Menu");
         }
 
-        void OnTrackedImagesChanged2(ARTrackedImagesChangedEventArgs eventArgs){
-
-            //Tant que tous les rounds ne sont pas jou?s, on va chercher ? scanner des cartes
+        void OnTrackedImagesChangedGameMode(ARTrackedImagesChangedEventArgs eventArgs){
+            // As long as all rounds are not played, we will try to scan cards
             if (round != GM.nbRounds){
                 foreach (ARTrackedImage trackedImage in eventArgs.added){
-                    UpdateARImageAdded2(trackedImage);
+                    UpdateARImageAddedGameMode(trackedImage);
                 }
 
                 foreach (ARTrackedImage trackedImage in eventArgs.updated){
                     if (trackedImage.trackingState == UnityEngine.XR.ARSubsystems.TrackingState.Tracking){
-                        UpdateARImageUpdated2(trackedImage);
+                        UpdateARImageUpdatedGameMode(trackedImage);
                     }
                 }
-                foreach (ARTrackedImage trackedImage in eventArgs.removed){
-                    Debug.Log($"test");
-                }
+                foreach (ARTrackedImage trackedImage in eventArgs.removed){}
 
                 var output = "";
-                foreach (Card i in GM.cards)
-                {
+                foreach (Card i in GM.cards){
                     output += i.ToString() + " | ";
                 }
                 imageTrackedText.text = output;
             }
             else{
-                //On actualise une derni?re fois l'affichage
+                //Refresh the display one last time
                 imageTrackedText.text = "";
-                //et on clear toutes les variables
+                //and clear all variables
                 cardsPlayedGame.Clear();
 
                 exitPanel.SetActive(true);
@@ -108,8 +109,8 @@ namespace tARot
             }
         }
 
-        private void UpdateARImageAdded2(ARTrackedImage trackedImage){
-            //Scan des cartes sur le plateau
+        private void UpdateARImageAddedGameMode(ARTrackedImage trackedImage){
+            //Scan of the cards on the board
             if (cardsPlayedRound.Count != (GM.nbPlayers - 1)){
                 string[] subs = trackedImage.referenceImage.name.Split('-');
                 Card card = new Card(subs[1], Convert.ToInt32(subs[0]));
@@ -117,9 +118,9 @@ namespace tARot
                 ListCardPlayedBoard.text = "Add" + cardPlayer.ToString() + trackedImage.referenceImage.name;
             }
         }
-        private void UpdateARImageUpdated2(ARTrackedImage trackedImage){
+        private void UpdateARImageUpdatedGameMode(ARTrackedImage trackedImage){
             var output = "";
-            //Est-ce que la carte a d?j? ?t? scann? ?
+            // Was the card already scanned?
             bool alreadyDisplayed = cardsPlayedGame.Contains(trackedImage.referenceImage.name);
             string[] subs = trackedImage.referenceImage.name.Split('-');
             Card card = new Card(subs[1], Convert.ToInt32(subs[0]));
@@ -137,13 +138,13 @@ namespace tARot
                 }
             }
             Debug.Log($"test{cardsPlayedRound.Count}+GM.nbPlayers - 1 :{GM.nbPlayers - 1}+ cardPlayer{cardPlayer}");
-            //On va scanner les cartes des autres joueurs
+            //We will scan the cards of the other players
             if (cardsPlayedRound.Count != (GM.nbPlayers - 1)){
-                //On v?rifie que ce n'est pas une carte du joueur
+                //We check that it is not a card of the player
                 if (cardPlayer == false){
-                    //Et qu'elle n'a pas d?j? ?t? scann?
+                    //And that it has not already been scanned
                     if (alreadyDisplayed == false){
-                        //On l'ajoute ? la liste des cartes du round
+                        //We add it to the list of cards of the round
                         cardsPlayedRound.Add(trackedImage.referenceImage.name);
                         cardsPlayedGame.Add(trackedImage.referenceImage.name);
                         foreach (string i in cardsPlayedRound)
@@ -167,12 +168,12 @@ namespace tARot
                     }
                 }
             }
-            //Quand toutes les cartes du plateau ont ?t? scann?, on va scanner la carte du user.
-            if (cardsPlayedRound.Count == (GM.nbPlayers - 1)){                
-                //On v?rifie que c'est une carte du joueur
+            //When all the cards on the board have been scanned, we will scan the user's card.
+            if (cardsPlayedRound.Count == (GM.nbPlayers - 1)){
+                //We check that it's a player's card
                 if (cardPlayer == true && alreadyDisplayed == false){
                     round++;
-                    //On efface tout
+                    //Delete everything
                     cardsPlayedRound.Clear();
                     cardsPlayedGame.Add(trackedImage.referenceImage.name);
                     ListCardPlayedBoard.text = "";

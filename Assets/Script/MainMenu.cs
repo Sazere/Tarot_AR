@@ -5,6 +5,11 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 namespace tARot{
+    /// <summary>
+    /// The MainMenu class is a class that allows the management of the different buttons of the menu
+    /// This allows you to choose the number of players and therefore the maximum number of rounds and cards in the player's hand
+    /// These are variables defined in the GameManager.
+    /// </summary>
     public class MainMenu : MonoBehaviour{
         private GameManager GM;
 
@@ -18,8 +23,7 @@ namespace tARot{
             SceneManager.LoadScene("ScanMode");
         }
 
-        public void NbPlayers5()
-        {
+        public void NbPlayers5(){
             Debug.Log("5 joueurs");
             GM.nbPlayers = 5;
             GM.maxCards = 4; //(78-6)/4=14
