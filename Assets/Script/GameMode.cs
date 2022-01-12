@@ -43,7 +43,9 @@ namespace tARot
         public List<string> cardsPlayedGame = new List<string>();
         public int round = 0;
 
+        public bool haveSuit;
         public List<Card> playableCards = new List<Card>();
+        public List<Card> greatestAtout = new List<Card>();
 
         public void Start(){
             GM = FindObjectOfType<GameManager>();
@@ -137,6 +139,7 @@ namespace tARot
                 }
             }
             Debug.Log($"test{cardsPlayedRound.Count}+GM.nbPlayers - 1 :{GM.nbPlayers - 1}+ cardPlayer{cardPlayer}");
+
             //On va scanner les cartes des autres joueurs
             if (cardsPlayedRound.Count != (GM.nbPlayers - 1)){
                 //On v?rifie que ce n'est pas une carte du joueur
@@ -146,6 +149,12 @@ namespace tARot
                         //On l'ajoute ? la liste des cartes du round
                         cardsPlayedRound.Add(trackedImage.referenceImage.name);
                         cardsPlayedGame.Add(trackedImage.referenceImage.name);
+                        if (card.isAtout())
+                        {
+                            // If the card scanned is an atout we check if it is greater than the last one
+                            keepGreaterAtout(card);
+                        }
+                        
                         foreach (string i in cardsPlayedRound)
                         {
                             output += i.ToString() + " | ";
@@ -153,8 +162,17 @@ namespace tARot
                         // Display the name of the tracked image in the canvas
                          ListCardPlayedBoard.text = output;
 
-                        // Check what card we can play
-                        checkCardsToPlay(card);
+
+                        // We check if we have a card of the suit asked (the first card to be played)and what card we can play
+                        if (cardsPlayedRound.Count == 1)
+                        {
+                            haveSuit = checkSuit(card);
+                            checkCardsToPlay(card);
+                        // We check again what card to play if we do not have the suit asked and that an atout is played
+                        } else if (!haveSuit && card.isAtout())
+                        {
+                            checkCardsToPlay(card);
+                        }
 
                         // Display playing recomendation
                         var recommendation = "";
@@ -174,7 +192,9 @@ namespace tARot
                     round++;
                     //On efface tout
                     cardsPlayedRound.Clear();
+                    greatestAtout.Clear();
                     cardsPlayedGame.Add(trackedImage.referenceImage.name);
+                    CardPlayer.text = "";
                     ListCardPlayedBoard.text = "";
                     var imageTrackedTextVariable = "";
                     foreach (Card i in GM.cards)
@@ -208,27 +228,99 @@ namespace tARot
             return false;
         }
 
+        // check if we have at least one atout 
+        private bool checkAtout()
+        {
+            foreach (Card handCard in GM.cards)
+            {
+                if (handCard.getSuit() == "atout")
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private bool checkGreaterAtout(Card card)
+        {
+            if (card.isAtout())
+            {
+                foreach (Card handCard in GM.cards)
+                {
+                    if (handCard.isAtout())
+                    {
+                        if (handCard.getValue() > card.getValue())
+                        {
+                            return true;
+                        }
+
+                    }
+                }
+            }
+            return false;
+        }
+
+        private void keepGreaterAtout(Card atout)
+        {
+
+            if (greatestAtout.Count == 0)
+            {
+                greatestAtout.Add(atout);
+            }
+                else if(greatestAtout[0].getValue() < atout.getValue())
+            {
+                greatestAtout.Clear();
+                greatestAtout.Add(atout);
+            }
+        }
+
         // function to trigger after scaning gameCard, it will set the HashSet of cards that we can play
-        public void checkCardsToPlay(Card gameCard)
+        public void checkCardsToPlay(Card gameCard)//14 trefle -- 13 carreau 16 atout
         {
             playableCards.Clear();
-            bool haveSuit = checkSuit(gameCard);
+            bool haveAtout = checkAtout();
+            Debug.Log($"-------haveAtout???????------- {haveAtout}");
 
             foreach (Card handCard in GM.cards)
             {
                 if (haveSuit && (handCard.getSuit() == gameCard.getSuit()))
                 {
                     Debug.Log($"-------JJJJJJAAAAAIIIIII------- {handCard}");
-                    playableCards.Add(handCard);
-                    //if (handCard.getValue() > gameCard.getValue()) handCard.setHighlight(true);
+                    
+                    if (gameCard.isAtout() && checkGreaterAtout(gameCard))
+                    {
+                        foreach (Card card in greatestAtout)
+                        {
+                            if (handCard.getValue() > card.getValue())
+                            {
+                                playableCards.Add(handCard);
+                            }
+                        }
+                    } else
+                    {
+                        playableCards.Add(handCard);
+                    }
+                    
                 }
                 else if (!haveSuit && handCard.isAtout())
                 {
                     Debug.Log($"-------CCCOOOOUUUUUPPPPPPEEE------- {handCard}");
-                    playableCards.Add(handCard);
-                    //handCard.setHighlight(true);
+                    if (checkGreaterAtout(gameCard))
+                    {
+                        foreach (Card card in greatestAtout)
+                        {
+                            if (handCard.getValue() > card.getValue())
+                            {
+                                playableCards.Add(handCard);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        playableCards.Add(handCard);
+                    }
                 }
-                else if (!haveSuit && !handCard.isAtout())
+                else if (!haveSuit && !handCard.isAtout() && !haveAtout)
                 {
                     Debug.Log($"-------PPPPIIIIISSSSSSEEEEE------- {handCard}");
                     playableCards.Add(handCard);

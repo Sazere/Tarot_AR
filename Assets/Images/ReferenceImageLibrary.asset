@@ -321,8 +321,8 @@ MonoBehaviour:
     m_SerializedTextureGuid:
       m_GuidLow: 1487402859672369402
       m_GuidHigh: 2741103923805719626
-    m_Size: {x: 0, y: 0}
-    m_SpecifySize: 0
+    m_Size: {x: 0.1, y: 0.1755}
+    m_SpecifySize: 1
     m_Name: 14-Pique
     m_Texture: {fileID: 0}
   - m_SerializedGuid:
@@ -341,8 +341,8 @@ MonoBehaviour:
     m_SerializedTextureGuid:
       m_GuidLow: 15975636519116671964
       m_GuidHigh: 7828554829101159898
-    m_Size: {x: 0, y: 0}
-    m_SpecifySize: 0
+    m_Size: {x: 0.1, y: 0.18516667}
+    m_SpecifySize: 1
     m_Name: 12-Pique
     m_Texture: {fileID: 0}
   - m_SerializedGuid:
