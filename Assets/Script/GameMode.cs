@@ -42,7 +42,11 @@ namespace tARot{
         [SerializeField]
         private GameObject instructionsPanel;
 
+        [SerializeField]
+        private GameObject[] arObjectsToPlace;
         private ARTrackedImageManager m_TrackedImageManager;
+
+        private Dictionary<string, GameObject> arObjects = new Dictionary<string, GameObject>();
         public string cardsPlayed = "";
         public List<string> cardsPlayedRound = new List<string>();
         public List<string> cardsPlayedGame = new List<string>();
@@ -59,6 +63,13 @@ namespace tARot{
         void Awake(){
             dismissButton.onClick.AddListener(Dismiss);
             m_TrackedImageManager = GetComponent<ARTrackedImageManager>();
+
+             //Simpler version
+            foreach (GameObject arObject in arObjectsToPlace){
+                GameObject newARObject = Instantiate(arObject, Vector3.zero, Quaternion.identity);
+                newARObject.name = arObject.name;   
+                arObjects.Add(newARObject.name, newARObject);                
+            }
         }
 
         void OnEnable(){
@@ -109,6 +120,11 @@ namespace tARot{
                 exitButton.onClick.AddListener(Exit);
 
             }
+
+            foreach (ARTrackedImage trackedImage in eventArgs.removed)
+            {
+                arObjects[trackedImage.referenceImage.name].SetActive(false);
+            }
         }
 
         private void UpdateARImageAddedGameMode(ARTrackedImage trackedImage){
@@ -118,6 +134,18 @@ namespace tARot{
                 Card card = new Card(subs[1], Convert.ToInt32(subs[0]));
                 bool cardPlayer = GM.cards.Contains(card);
                 ListCardPlayedBoard.text = "Add" + cardPlayer.ToString() + trackedImage.referenceImage.name;
+            }
+
+            arObjects[trackedImage.referenceImage.name].transform.position = trackedImage.transform.position;
+            arObjects[trackedImage.referenceImage.name].transform.rotation = Quaternion.Euler(0, -90, 0);
+            arObjects[trackedImage.referenceImage.name].SetActive(true);
+
+            foreach (GameObject go in arObjects.Values){           
+                    Debug.Log($"Go in arObjects.Values: {go.name}");
+                    if (go.name != trackedImage.referenceImage.name){
+                        Debug.Log($"Go in arObjects.Values DESACTIVATED: {go.name}");
+                        go.SetActive(false);
+                    }                    
             }
         }
         private void UpdateARImageUpdatedGameMode(ARTrackedImage trackedImage){
@@ -210,6 +238,18 @@ namespace tARot{
                     }
                     imageTrackedText.text = imageTrackedTextVariable;
                 }
+            }
+
+            arObjects[trackedImage.referenceImage.name].transform.position = trackedImage.transform.position;
+            arObjects[trackedImage.referenceImage.name].transform.rotation = Quaternion.Euler(0, -90, 0);
+            arObjects[trackedImage.referenceImage.name].SetActive(true);
+
+            foreach (GameObject go in arObjects.Values){           
+                    Debug.Log($"Go in arObjects.Values: {go.name}");
+                    if (go.name != trackedImage.referenceImage.name){
+                        Debug.Log($"Go in arObjects.Values DESACTIVATED: {go.name}");
+                        go.SetActive(false);
+                    }                    
             }
 
         }
